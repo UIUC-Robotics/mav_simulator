@@ -1,0 +1,71 @@
+<?xml version="1.0"?>
+<!-- name: pass from launch with xacro ... name:=my_crazyflie (default: crazyflie) -->
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="$(arg name)">
+  <xacro:arg name="name" default="crazyflie"/>
+  <xacro:property name="prefix" value="$(arg name)"/>
+
+  <link name="${prefix}/base_footprint"/>
+
+  <joint name="${prefix}/base_footprint_joint" type="fixed">
+    <parent link="${prefix}/base_footprint"/>
+    <child link="${prefix}/base_link"/>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+  </joint>
+
+  <link name="${prefix}/base_link">
+    <origin xyz="0 0 0.015" rpy="0 0 0"/>
+
+    <visual>
+      <geometry>
+        <mesh
+          filename="package://mav_description/models/crazyflie/meshes/cf2_assembly_with_props.dae"
+          scale="1.0 1.0 1.0"/>
+      </geometry>
+    </visual>
+
+    <collision>
+      <geometry>
+        <!-- Approx Crazyflie footprint: 9cm x 9cm x 3cm -->
+        <box size="0.09 0.09 0.03"/>
+      </geometry>
+    </collision>
+
+    <inertial>
+      <mass value="0.027"/>
+      <inertia
+        ixx="1.4e-5"
+        iyy="1.4e-5"
+        izz="2.17e-5"
+        ixy="0"
+        ixz="0"
+        iyz="0"/>
+    </inertial>
+  </link>
+
+  <!-- Camera link (matches model.sdf: 2cm front, 0.5cm below center) -->
+  <link name="${prefix}/camera_link">
+    <visual>
+      <geometry>
+        <box size="0.005 0.01 0.005"/>
+      </geometry>
+      <material name="camera_grey">
+        <color rgba="0.2 0.2 0.2 1"/>
+      </material>
+    </visual>
+    <collision>
+      <geometry>
+        <box size="0.005 0.01 0.005"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.001"/>
+      <inertia ixx="1e-8" iyy="1e-8" izz="1e-8" ixy="0" ixz="0" iyz="0"/>
+    </inertial>
+  </link>
+
+  <joint name="${prefix}_camera_joint" type="fixed">
+    <parent link="${prefix}/base_link"/>
+    <child link="${prefix}/camera_link"/>
+    <origin xyz="0.02 0 0.032" rpy="0 0 0"/>
+  </joint>
+</robot>
