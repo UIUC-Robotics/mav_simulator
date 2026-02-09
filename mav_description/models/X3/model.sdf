@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <sdf version="1.9">
   <model name="X3">
+    <static>false</static>
     <!-- Model-level <pose> removed: not supported by sdformat_urdf (robot_state_publisher). Offset baked into base_link. -->
     <link name="X3/base_link">
       <pose>0 0 0.053302 0 0 0</pose>
@@ -231,10 +232,9 @@
       </axis>
     </joint>
 
-    <!-- Multicopter motor and control plugins (same as x3_warehouse.world) -->
     <plugin
-      filename="ignition-gazebo-multicopter-motor-model-system"
-      name="ignition::gazebo::systems::MulticopterMotorModel">
+      filename="gz-sim-multicopter-motor-model-system"
+      name="gz::sim::systems::MulticopterMotorModel">
       <robotNamespace>X3</robotNamespace>
       <jointName>X3/rotor_0_joint</jointName>
       <linkName>X3/rotor_0</linkName>
@@ -253,8 +253,8 @@
       <motorType>velocity</motorType>
     </plugin>
     <plugin
-      filename="ignition-gazebo-multicopter-motor-model-system"
-      name="ignition::gazebo::systems::MulticopterMotorModel">
+      filename="gz-sim-multicopter-motor-model-system"
+      name="gz::sim::systems::MulticopterMotorModel">
       <robotNamespace>X3</robotNamespace>
       <jointName>X3/rotor_1_joint</jointName>
       <linkName>X3/rotor_1</linkName>
@@ -273,8 +273,8 @@
       <motorType>velocity</motorType>
     </plugin>
     <plugin
-      filename="ignition-gazebo-multicopter-motor-model-system"
-      name="ignition::gazebo::systems::MulticopterMotorModel">
+      filename="gz-sim-multicopter-motor-model-system"
+      name="gz::sim::systems::MulticopterMotorModel">
       <robotNamespace>X3</robotNamespace>
       <jointName>X3/rotor_2_joint</jointName>
       <linkName>X3/rotor_2</linkName>
@@ -293,8 +293,8 @@
       <motorType>velocity</motorType>
     </plugin>
     <plugin
-      filename="ignition-gazebo-multicopter-motor-model-system"
-      name="ignition::gazebo::systems::MulticopterMotorModel">
+      filename="gz-sim-multicopter-motor-model-system"
+      name="gz::sim::systems::MulticopterMotorModel">
       <robotNamespace>X3</robotNamespace>
       <jointName>X3/rotor_3_joint</jointName>
       <linkName>X3/rotor_3</linkName>
@@ -313,8 +313,8 @@
       <motorType>velocity</motorType>
     </plugin>
     <plugin
-      filename="ignition-gazebo-multicopter-control-system"
-      name="ignition::gazebo::systems::MulticopterVelocityControl">
+      filename="gz-sim-multicopter-control-system"
+      name="gz::sim::systems::MulticopterVelocityControl">
       <robotNamespace>X3</robotNamespace>
       <commandSubTopic>cmd_vel</commandSubTopic>
       <enableSubTopic>enable</enableSubTopic>

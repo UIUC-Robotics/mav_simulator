@@ -24,7 +24,7 @@ def get_package_paths():
     this_file = os.path.abspath(__file__)
     launch_dir = os.path.dirname(this_file)
     source_pkg_root = os.path.dirname(launch_dir)  # .../mav_gazebo
-    source_world = os.path.join(source_pkg_root, 'worlds', 'warehouse.world')
+    source_world = os.path.join(source_pkg_root, 'worlds', 'a2rl_track.world')
 
     try:
         from ament_index_python.packages import get_package_share_directory
@@ -37,7 +37,7 @@ def get_package_paths():
     if os.path.isfile(source_world):
         world_path = source_world
     else:
-        world_path = os.path.join(pkg_share, 'worlds', 'warehouse.world')
+        world_path = os.path.join(pkg_share, 'worlds', 'a2rl_track.world')
     return models_path, world_path
 
 

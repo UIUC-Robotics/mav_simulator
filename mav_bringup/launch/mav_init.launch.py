@@ -2,8 +2,7 @@
 
 """
 MAV Simulator main launch (aligned with gem_init.launch.py).
-Launches Gazebo (warehouse world), ros_gz_bridge, and spawns the drone after a delay.
-Use this instead of warehouse.launch.py + spawn_drone.launch.py to avoid create timeout.
+Launches Gazebo (a2rl_track world), ros_gz_bridge, and spawns the drone.
 """
 
 import os
@@ -24,7 +23,7 @@ def generate_launch_description():
     # Absolute paths so Gazebo and any subprocess resolve model:// reliably
     mav_gazebo_models = os.path.abspath(os.path.join(pkg_share, 'models'))
     mav_desc_models = os.path.abspath(os.path.join(mav_desc_share, 'models'))
-    world_path = os.path.join(pkg_share, 'worlds', 'warehouse.world')
+    world_path = os.path.join(pkg_share, 'worlds', 'a2rl_track.world')
     current = os.environ.get('GZ_SIM_RESOURCE_PATH', '')
     # mav_desc_models first so model://X3 in world resolves to mav_description/models/X3
     new_resource_path = mav_desc_models + ':' + mav_gazebo_models + (':' + current if current else '')
