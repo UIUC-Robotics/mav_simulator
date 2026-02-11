@@ -30,7 +30,7 @@
           <property type="bool" key="showTitleBar">false</property>
           <property type="string" key="state">docked</property>
         </ignition-gui>
-        <camera_pose>-3.535 -3.535 3.0 0 0.54 0.0</camera_pose>
+        <camera_pose>-5 0.05 3.0 0 0.54 0.0</camera_pose>
         <!-- 3D scene (main view) - must be first so it takes the main area -->
         <engine>ogre2</engine>
         <scene>scene</scene>
@@ -168,7 +168,7 @@
 
 
     <light type="spot" name="spot4">
-      <pose>8 -54 10.0 0 0 0</pose>
+      <pose>-22 8 12.0 0 0 0</pose>
       <diffuse>1 1 1 1</diffuse>
       <specular>1 1 1 1</specular>
       <intensity>1</intensity>
