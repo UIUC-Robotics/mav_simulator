@@ -52,13 +52,7 @@ For full Gazebo + ROS 2 setup: [Gazebo Sim with ROS 2](https://gazebosim.org/doc
    cd /path/to/your_ws/src
    # clone or copy mav_simulator here
    ```
-2. Install ROS–Gazebo bridge (if not already installed):
-
-   ```bash
-   sudo apt install ros-${ROS_DISTRO}-ros-gz
-   # for ROS2 Humble
-   sudo apt install ros-humble-ros-gzharmonic
-   ```
+2. Install ROS–Gazebo bridge (if not already installed):apt install ros-${ROS_DISTRO}-ros-gz
 3. Build and source:
 
    ```bash
@@ -80,7 +74,8 @@ ros2 launch mav_bringup mav_init.launch.py
 The X3 model is included in the world file and will appear in the scene. Gazebo Sim and RViz will start; ensure the world is fully loaded before sending commands.
 
 ### 2. Controlling the drone
-Use Keboard Teleop using the gazebo gui. 
+
+Use Keboard Teleop using the gazebo gui.
 Send velocity commands on the bridged topic:
 
 ```bash
