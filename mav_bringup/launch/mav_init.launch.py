@@ -98,7 +98,10 @@ def generate_launch_description():
         executable='image_bridge',
         name='image_bridge',
         arguments=[
-            'X3/camera/image_raw',
+            '/image_raw',
+        ],
+        remappings=[
+            ('/image_raw', '/X3/camera/image_raw'),
         ],
         parameters=[{'use_sim_time': use_sim_time}],
         output='screen',
