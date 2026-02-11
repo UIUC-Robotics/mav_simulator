@@ -92,6 +92,16 @@ def generate_launch_description():
         output='screen',
     )
 
+    # Publish world->odom (static) and odom->base_link TF; namespace X3 -> frames X3/odom, topic /X3/odom
+    odom_to_tf_node = Node(
+        package='mav_gazebo',
+        executable='odom_to_tf.py',
+        name='odom_to_tf',
+        namespace='X3',
+        parameters=[{'use_sim_time': use_sim_time}],
+        output='screen',
+    )
+
     # Bridge Gazebo camera image to ROS (gz topic -> ROS topic; ref: gem_init.launch.py)
     ros_gz_image_bridge = Node(
         package='ros_gz_image',
@@ -122,6 +132,7 @@ def generate_launch_description():
         gz_sim_launch,
         ros_gz_bridge,
         ros_gz_image_bridge,
+        odom_to_tf_node,
         robot_state_publisher,
         # rviz,
     ])

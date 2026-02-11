@@ -32,12 +32,11 @@ find_package(position_controllers REQUIRED)
 find_package(velocity_controllers REQUIRED)
 find_package(joint_state_broadcaster REQUIRED)
 
-# Install Python scripts
-
-# Install Python executables
-# install(PROGRAMS
-#   DESTINATION lib/${PROJECT_NAME}/scripts
-# )
+# Install Python scripts (all .py in scripts/ as runnable executables)
+file(GLOB PYTHON_SCRIPTS "scripts/*.py")
+install(PROGRAMS ${PYTHON_SCRIPTS}
+  DESTINATION lib/${PROJECT_NAME}
+)
 
 # Install directories
 install(DIRECTORY
@@ -45,6 +44,7 @@ install(DIRECTORY
   launch
   worlds
   models
+  scripts
   DESTINATION share/${PROJECT_NAME}
 )
 
