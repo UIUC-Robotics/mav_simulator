@@ -9,7 +9,7 @@ import os
 
 from launch import LaunchDescription
 from launch.actions import DeclareLaunchArgument, IncludeLaunchDescription, SetEnvironmentVariable, TimerAction
-from launch.substitutions import LaunchConfiguration, PathJoinSubstitution
+from launch.substitutions import LaunchConfiguration, PathJoinSubstitution, TextSubstitution
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch_ros.actions import Node
 from launch_ros.substitutions import FindPackageShare
@@ -23,7 +23,6 @@ def generate_launch_description():
     # Absolute paths so Gazebo and any subprocess resolve model:// reliably
     mav_gazebo_models = os.path.abspath(os.path.join(pkg_share, 'models'))
     mav_desc_models = os.path.abspath(os.path.join(mav_desc_share, 'models'))
-    world_path = os.path.join(pkg_share, 'worlds', 'a2rl_track_ign.world')
     current = os.environ.get('GZ_SIM_RESOURCE_PATH', '')
     # mav_desc_models first so model://X3 in world resolves to mav_description/models/X3
     new_resource_path = mav_desc_models + ':' + mav_gazebo_models + (':' + current if current else '')
@@ -43,7 +42,14 @@ def generate_launch_description():
         default_value='true',
         description='Use simulation time',
     )
+    world_name_arg = DeclareLaunchArgument(
+        'world_name',
+        default_value='x3_illini_warehouse.world',
+        description='World filename in mav_gazebo/worlds/ (e.g. x3_illini_warehouse.world, x3_illini_pavilion.world)',
+    )
+
     use_sim_time = LaunchConfiguration('use_sim_time')
+    world_name = LaunchConfiguration('world_name')
 
     # Load the SDF file from "description" package
     sdf_file = os.path.join(mav_desc_share, 'models', 'X3', 'model.sdf')
@@ -53,7 +59,14 @@ def generate_launch_description():
     robot_desc = robot_desc.replace('model://X3/', 'package://mav_description/models/X3/')
 
 
-    # Gazebo with warehouse world
+    # Gazebo: world path from world_name argument (only this world is loaded).
+    # If the GUI requests a different world name, it is using a cached config; clear
+    # ~/.ignition/gazebo/gui.config and relaunch.
+    world_path = PathJoinSubstitution([
+        FindPackageShare('mav_gazebo'),
+        'worlds',
+        world_name,
+    ])
     gz_sim_launch = IncludeLaunchDescription(
         PythonLaunchDescriptionSource([
             PathJoinSubstitution([
@@ -63,7 +76,7 @@ def generate_launch_description():
             ])
         ]),
         launch_arguments=[
-            ('gz_args', '-r -v 4 ' + world_path),
+            ('gz_args', [TextSubstitution(text='-r -v 4 '), world_path]),
         ],
     )
 
@@ -129,6 +142,7 @@ def generate_launch_description():
         set_gz_resource_path,
         set_gz_version,
         use_sim_time_arg,
+        world_name_arg,
         gz_sim_launch,
         ros_gz_bridge,
         ros_gz_image_bridge,

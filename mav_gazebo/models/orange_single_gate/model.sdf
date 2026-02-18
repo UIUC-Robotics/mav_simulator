@@ -1,12 +1,12 @@
 <sdf version="1.9">
-  <model name="hangar">
+  <model name="orange_single_gate">
     <static>true</static> 
 
     <link name="link">
       <visual name="visual">
         <geometry>
           <mesh>
-            <uri>model://hangar/meshes/hangar.dae</uri>
+            <uri>model://orange_single_gate/meshes/orange_single_gate.dae</uri>
           </mesh>
         </geometry>
       </visual>
@@ -14,7 +14,7 @@
       <collision name="collision">
         <geometry>
           <mesh>
-            <uri>model://hangar/meshes/hangar.dae</uri>
+            <uri>model://orange_single_gate/meshes/orange_single_gate.dae</uri>
           </mesh>
         </geometry>
       </collision>

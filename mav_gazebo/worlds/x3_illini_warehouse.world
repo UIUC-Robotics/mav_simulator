@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Ignition Fortress (gz-sim8) compatible; uses local models from mav_gazebo/models -->
 <sdf version="1.8">
-  <world name="a2rl_track_ign">
+  <world name="x3_illini_warehouse">
     <plugin filename="gz-sim-physics-system" name="gz::sim::systems::Physics">
     </plugin>
     <plugin filename="gz-sim-sensors-system" name="gz::sim::systems::Sensors">
@@ -219,61 +219,61 @@
     <include>
       <static>true</static>
       <name>gate1</name>
-      <uri>model://single_gate</uri>
+      <uri>model://orange_single_gate</uri>
       <pose>2 0 0.0 0.0 0.0 0.0</pose>
     </include>
     <include>
       <static>true</static>
       <name>gate2</name>
-      <uri>model://single_gate</uri>
+      <uri>model://orange_single_gate</uri>
       <pose>8 -4 0.0 0.0 0.0 -0.7854</pose>
     </include>
     <include>
       <static>true</static>
       <name>gate3</name>
-      <uri>model://single_gate</uri>
+      <uri>model://orange_single_gate</uri>
       <pose>9 -12 0.0 0.0 0.0 -1.0472</pose>
     </include>
     <include>
       <static>true</static>
       <name>gate4</name>
-      <uri>model://single_gate</uri>
+      <uri>model://orange_single_gate</uri>
       <pose>12 -22 0.0 0.0 0.0 -1.5708</pose>
     </include>
     <include>
       <static>true</static>
       <name>gate5</name>
-      <uri>model://single_gate</uri>
+      <uri>model://orange_single_gate</uri>
       <pose>7 -28 0.0 0.0 0.0 -0.17454</pose>
     </include>
     <include>
       <static>true</static>
       <name>gate6</name>
-      <uri>model://single_gate</uri>
+      <uri>model://orange_single_gate</uri>
       <pose>2 -20 0.0 0.0 0.0 0</pose>
     </include>
     <include>
       <static>true</static>
       <name>gate7</name>
-      <uri>model://double_gate</uri>
+      <uri>model://orange_double_gate</uri>
       <pose>-3 -28 0.0 0.0 0.0 -1.74534</pose>
     </include>
     <include>
       <static>true</static>
       <name>gate8</name>
-      <uri>model://single_gate</uri>
+      <uri>model://orange_single_gate</uri>
       <pose>-4 -20 0.0 0.0 0.0 -1.396267</pose>
     </include>
     <include>
       <static>true</static>
       <name>gate9</name>
-      <uri>model://single_gate</uri>
+      <uri>model://orange_single_gate</uri>
       <pose>-6 -12 0.0 0.0 0.0 -1.74534</pose>
     </include>
     <include>
       <static>true</static>
       <name>gate10</name>
-      <uri>model://double_gate</uri>
+      <uri>model://orange_double_gate</uri>
       <pose>-4 -4 0.0 0.0 0.0 -2.3562</pose>
     </include>
 
@@ -325,7 +325,7 @@
       <static>true</static>
       <name>Cable_Spool.001</name>
       <uri>model://cable_spool/1</uri>
-      <pose>17.7221 -20.7664 0.4916 0.0 0.0 -1.6</pose>
+      <pose>17.7221 -20.7664 0.24 0.0 0.0 -1.6</pose>
     </include>
     <include>
       <static>true</static>

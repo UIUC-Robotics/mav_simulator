@@ -86,21 +86,32 @@ ros2 topic pub -r 10 /X3/cmd_vel geometry_msgs/msg/Twist \
 
 The bridge is configured in `mav_gazebo/config/gz_bridge.yaml` (e.g. `X3/cmd_vel`). Add more topic bridges there if needed.
 
-### 3. Spawning a different model
+### 3. Choosing a world
+
+To use a different world file (e.g. `x3_illini_pavilion.world`):
+
+```bash
+ros2 launch mav_bringup mav_init.launch.py world_name:=x3_illini_pavilion.world
+```
+
+Only one world is loaded (the one you pass); the server loads that file. If the Gazebo GUI shows or requests a different world name (e.g. `a2rl_track_ign`), it is using a **cached config** from a previous run. Clear it so the GUI matches the loaded world:
+
+```bash
+rm -f ~/.ignition/gazebo/gui.config
+# or for Ignition Gazebo 6:
+rm -f ~/.ignition/gazebo/*.config
+```
+
+Then launch again with the desired `world_name`.
+
+### 4. Spawning a different model at runtime
 
 To spawn another (or the same) model at runtime instead of relying on the world file:
 
 1. Start the simulation (e.g. `ros2 launch mav_bringup mav_init.launch.py`).
-2. After the world is loaded, run the Gazebo Sim `create` node:
+2. After the world is loaded, use the Gazebo Sim `create` service as needed.
 
-   ```bash
-   ros2 run ros_gz_sim create -world a2rl_track \
-     -file /path/to/model.sdf \
-     -name MyDrone \
-     -x 1.0 -y 1.0 -z 1.0
-   ```
-
-Use the same world name as in your launch file (`a2rl_track` for the default world). Add corresponding bridges in `gz_bridge.yaml` if you want ROS topics for the new entity (e.g. `MyDrone/cmd_vel`).
+Use the same world name as in your launch file. Add corresponding bridges in `gz_bridge.yaml` if you want ROS topics for the new entity (e.g. `MyDrone/cmd_vel`).
 
 ## Package layout
 
